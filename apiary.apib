@@ -1,0 +1,118 @@
+FORMAT: 1A
+HOST: http://bookmgmt.apiblueprint.org/
+
+# Bookinfo
+
+Bookinfo is a simple API allowing consumers to authenticate user and view book info.
+
+# Bookinfo API Root [/]
+
+This resource does not have any attributes. Instead it offers the initial
+API affordances in the form of the links in the JSON body.
+
+It is recommend to follow the “url” link values,
+[Link](https://tools.ietf.org/html/rfc5988) or Location headers where
+applicable to retrieve resources. Instead of constructing your own URLs,
+to keep your client decoupled from implementation details.
+
+## Retrieve the Entry Point [GET]
+
++ Response 200 (application/json)
+
+        {
+            "book_url": "/books"
+        }
+
+## Group Book
+
+Resources related to questions in the API.
+
+## Book [/books/{id}]
+
+A Book object has the following attributes:
+
++ id
++ bookname
++ authorname 
++ publication
+
+
++ Parameters
+    + id: 1 (required, number) - ID of the book in form of an integer
+
+### View a Book Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": "1",
+            "bookname": "How to teach people",  
+            "authorname": "Jennifer Schedule",  
+            "publication": "PHP"
+           
+        }
+
+
+## Book List [/books{?page}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of books to return
+
+### List All Books [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </books?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "id": "1",
+                    "bookname": "Self learning",
+                    "authorname": "Jennifer Schedule",
+                    "publication": "MHL"
+                },
+                 {
+                    "id": "2"
+                    "bookname": "English Speaking",
+                    "authorname": "Mark Henry",
+                    "publication": "LLC"
+                }
+            ]
+
+### Create a New Book [POST]
+
+You may create your own question using this action. 
+
++ bookname (string) - Book Name
++ authorname (string) - Author name
++ publication (string) - Publication.
+
++ Request (application/json)
+
+        {
+           {
+                "bookname": "Playing my way",
+                "authorname": "Sachin",
+                "publication": "CIC"
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /books/3
+
+    + Body
+
+            {
+                "id": "3",
+                "bookname": "Playing my way",
+                "authorname": "Sachin",
+                "publication": "CIC"
+               
+            }
