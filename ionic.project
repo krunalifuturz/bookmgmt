@@ -1,0 +1,12 @@
+{
+  "name": "bookmgmt",
+  "app_id": "56ac252f",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
