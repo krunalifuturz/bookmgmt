@@ -13,3 +13,9 @@ angular.module('starter.controllers', [])
   // "Books" is a service returning mock data (services.js)
   $scope.book = BookService.get($stateParams.bookId);
 });
+
+// A post controller for save new book data.
+// .controller('BookInsertCtrl', function($scope, $stateParams, BookService) {
+  // // Get all posts
+  // $scope.books = BookService.Post($stateParams);
+// });

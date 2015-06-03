@@ -31,6 +31,12 @@ angular.module('starter.services', [])
     get: function(bookId) {
       // Simple index lookup
       return books[bookId];
-    }
+    },
+	post: function(objbook){
+		var book = [];
+		// get the book data and call post api for save book detail;
+		return books;
+	}
+	
   }
 });
