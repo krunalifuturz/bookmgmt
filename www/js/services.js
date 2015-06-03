@@ -7,9 +7,9 @@ angular.module('starter.services', [])
 .factory('BookService', function($http) {
   // Might use a resource here that returns a JSON array
 
-  $http.get('http://echo.jsontest.com/conditions/frightful').then(function(resp) {
+  $http.get('http://echo.jsontest.com/ktest/myapp').then(function(resp) {
     //$scope.conditions = resp.data.conditions;
-	alert(resp.data.conditions);
+	alert(resp.data.ktest);
   }, function(err) {
 	  alert(err);
     console.error('ERR', err);
