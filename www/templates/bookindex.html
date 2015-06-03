@@ -1,0 +1,20 @@
+<!-- 
+  This template gets placed in the Book tab's <ion-nav-view> directive.
+  It was wired up in the app config (app.js) 
+  The 'books' data comes from its $scope within BookIndexCtrl (controller.js)
+-->
+<ion-view title="Book Info">
+  <ion-content>
+
+    <ion-list>
+
+      <ion-item ng-repeat="book in books" type="item-text-wrap" href="#/tab/book/{{book.id}}">
+        <h3>{{book.bookname}}</h3>
+        <h2>{{book.authorname}}</h2>
+		<h2>{{book.publication}}</h2>
+      </ion-item>
+      
+    </ion-list>
+
+  </ion-content>
+</ion-view>

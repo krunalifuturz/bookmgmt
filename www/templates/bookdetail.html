@@ -1,0 +1,13 @@
+<!--
+  This template loads for the 'tab.bookdetail' state (app.js)
+  'book' is a $scope variable created in the BookCtrl controller (controllers.js)
+  The BookCtrl pulls data from the Books service (service.js)
+  The Books service returns an array of book detail 
+-->
+<ion-view title="{{book.bookname}}">
+  <ion-content padding="true">
+    <span>Author Name :</span> <span>{{ book.authorname }}</span><br/>
+	<span>Publication :</span> <span>{{ book.publication }}</span><br/><br/>
+    <p><a class="button button-small icon ion-arrow-left-b" href="#/tab/books"> Book List</a></p>
+  </ion-content>
+</ion-view>
