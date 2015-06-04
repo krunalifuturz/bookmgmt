@@ -6,8 +6,8 @@
 # 'starter.services' is found in services.js
 # 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
-
+angular.module('starter', ['ionic','ngResource', 'starter.services', 'starter.controllers'])
+#angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 .config ($stateProvider, $urlRouterProvider) ->
   # Ionic uses AngularUI Router which uses the concept of states
   # Learn more here: https://github.com/angular-ui/ui-router

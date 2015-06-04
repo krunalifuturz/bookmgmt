@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory 'BookService', ($http) ->
+.factory 'BookService', ($resource) ->
   # Might use a resource here that returns a JSON array
  
    #$http.get('http://echo.jsontest.com/ktest/myapp').then ((resp) ->
