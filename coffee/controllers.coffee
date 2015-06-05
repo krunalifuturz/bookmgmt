@@ -13,10 +13,9 @@ angular.module('starter.controllers', [])
 .controller 'BookInsertCtrl', ($scope, BookService) ->
   $scope.bookData = {}
   #alert 'test'
-
   $scope.addBook = ->
     alert $scope.bookData.bookname
     bookservice.Save $scope.bookData
-    #return
+    return
 
  # return

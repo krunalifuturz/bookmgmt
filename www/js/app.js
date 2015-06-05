@@ -46,36 +46,14 @@ angular.module('starter.controllers', []).controller('BookIndexCtrl', function($
   $scope.bookData = {};
   return $scope.addBook = function() {
     alert($scope.bookData.bookname);
-    return bookservice.Save($scope.bookData);
+    bookservice.Save($scope.bookData);
   };
 });
 
-angular.module('starter.services', []).factory('BookService', function($resource) {
+angular.module('starter.services', []).factory("BookService", function($resource) {
   var bookinfo, books;
-  books = [
-    {
-      id: 0,
-      bookname: 'How to teach people',
-      authorname: 'Jennifer Schedule',
-      publication: 'PHL'
-    }, {
-      id: 1,
-      bookname: 'English Speaking',
-      authorname: 'Marry Goerge',
-      publication: 'LLC'
-    }, {
-      id: 2,
-      bookname: 'Daily Exercise',
-      authorname: 'John matt',
-      publication: 'KLK'
-    }, {
-      id: 3,
-      bookname: 'Playing my own way',
-      authorname: 'Sachin',
-      publication: 'CRC'
-    }
-  ];
-  bookinfo = $resource('http://192.168.1.176/ionic/api/values/SelectAll');
+  books = [];
+  bookinfo = $resource("http://192.168.1.176/ionic/api/values/SelectAllBook");
   bookinfo.get(function(data) {
     var bookarray, i;
     bookarray = data.records;
