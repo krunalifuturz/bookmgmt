@@ -2,18 +2,6 @@ angular.module('starter.services', [])
 
 .factory 'BookService', ($resource) ->
   # Might use a resource here that returns a JSON array
- 
-   #$http.get('http://echo.jsontest.com/ktest/myapp').then ((resp) ->
-		#$scope.conditions = resp.data.conditions;
-		#alert(resp.data.ktest);
-		#console.error 'ktest:', resp.data.ktest
-	
-	#), (err) ->
-			#alert err
-			#console.error 'ERR', err
-				# err.status will contain the status code
-	
- 
   # dummy data
   books = [
     {
@@ -41,6 +29,23 @@ angular.module('starter.services', [])
       publication: 'CRC'
     }
   ]
+  
+  
+  bookinfo = $resource('http://192.168.1.176/ionic/api/values/SelectAll')
+  bookinfo.get (data) ->
+    bookarray = data.records
+    i = 0
+    angular.forEach bookarray, ((value, key) ->
+      book = []
+      book.id = key
+      book.bookname = value.bookname
+      book.authorname = value.authorname
+      book.publication = value.publication
+      @push book
+     # return
+    ), books
+  
+  
   {
     all: ->
       books

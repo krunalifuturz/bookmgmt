@@ -7,18 +7,18 @@
     <div class="list list-inset">
       <label class="item item-input">
         <span class="input-label">Book name</span>
-        <input type="text" name="bookname" required>
+        <input type="text" ng-model='bookData.bookname' name="bookname" required>
       </label>
       <label class="item item-input">
         <span class="input-label">Author Name</span>
-        <input type="text" name="authorname" required>
+        <input type="text" ng-model='bookData.authorname' name="authorname" required>
       </label>
       <label class="item item-input">
         <span class="input-label">Publication</span>
-        <input type="text" name="publication" required>
+        <input type="text" ng-model='bookData.publication' name="publication" required>
       </label>
       
-      <button class="button button-positive button-block">Save</button>
+      <button class="button button-positive button-block" type='submit'>Save</button>
     </div>
 	</form
   </ion-content>
