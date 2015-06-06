@@ -38,4 +38,49 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.services', 'starter.c
   return $urlRouterProvider.otherwise('/tab/books');
 });
 
+angular.module('starter.controllers', []).controller('BookIndexCtrl', function($scope, BookService) {
+  return $scope.books = BookService.all();
+}).controller('BookDetailCtrl', function($scope, $stateParams, BookService) {
+  return $scope.book = BookService.get($stateParams.bookId);
+}).controller('BookInsertCtrl', function($scope, BookService) {
+  $scope.bookData = {};
+  return $scope.addBook = function() {
+    alert($scope.bookData.bookname);
+    bookservice.Save($scope.bookData);
+  };
+});
 
+angular.module('starter.services', []);
+
+app.factory("BookService", function($resource) {
+  var bookinfo, books;
+  books = [];
+  bookinfo = $resource("http://180.211.97.84/ionincApp/api/Values/SelectAll");
+  bookinfo.get(function(data) {
+    var bookarray, i;
+    bookarray = data.Books;
+    i = 0;
+    return angular.forEach(bookarray, (function(value, key) {
+      var book;
+      book = [];
+      book.id = key;
+      book.bookname = value.bookname;
+      book.authorname = value.authorname;
+      book.publication = value.publication;
+      return this.push(book);
+    }), books);
+  });
+  return {
+    all: function() {
+      return books;
+    },
+    get: function(bookId) {
+      return books[bookId];
+    },
+    post: function(objbook) {
+      var book;
+      book = [];
+      return books;
+    }
+  };
+});
