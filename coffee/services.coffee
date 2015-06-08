@@ -4,21 +4,21 @@ angular.module('starter.services', [])
   
   # Might use a resource here that returns a JSON array
   books = []
-  bookinfo = $resource("http://180.211.97.84/ionincApp/api/Values/SelectAll")
-  #bookinfo = $resource("http://www.w3schools.com/angular/customers.php")
+  #bookinfo = $resource("http://180.211.97.84/ionincApp/api/Values/SelectAll")
+  bookinfo = $resource("http://www.w3schools.com/angular/customers.php")
   bookinfo.get (data) ->
     alert 'data:'+data
-    bookarray = data.Books
+    bookarray = data.records
     i = 0
     angular.forEach bookarray, ((value, key) ->
       book = []
       book.id = key
-      #book.bookname = value.Name
-      #book.authorname = value.City
-      #book.publication = value.Country
-      book.bookname = value.bookname
-      book.authorname = value.authorname
-      book.publication = value.publication
+      book.bookname = value.Name
+      book.authorname = value.City
+      book.publication = value.Country
+      #book.bookname = value.bookname
+      #book.authorname = value.authorname
+      #book.publication = value.publication
       @push book
     ), books
 
