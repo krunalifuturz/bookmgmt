@@ -50,23 +50,21 @@ angular.module('starter.controllers', []).controller('BookIndexCtrl', function($
   };
 });
 
-angular.module('starter.services', []);
-
-app.factory("BookService", function($resource) {
+angular.module('starter.services', []).factory("BookService", function($resource) {
   var bookinfo, books;
   books = [];
-  bookinfo = $resource("http://180.211.97.84/ionincApp/api/Values/SelectAll");
+  bookinfo = $resource("http://www.w3schools.com/angular/customers.php");
   bookinfo.get(function(data) {
     var bookarray, i;
-    bookarray = data.Books;
+    bookarray = data.records;
     i = 0;
     return angular.forEach(bookarray, (function(value, key) {
       var book;
       book = [];
       book.id = key;
-      book.bookname = value.bookname;
-      book.authorname = value.authorname;
-      book.publication = value.publication;
+      book.bookname = value.Name;
+      book.authorname = value.City;
+      book.publication = value.Country;
       return this.push(book);
     }), books);
   });
