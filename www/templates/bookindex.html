@@ -8,10 +8,14 @@
 
     <ion-list>
 
-      <ion-item ng-repeat="book in books" type="item-text-wrap" href="#/tab/book/{{book.id}}">
+      <ion-item ng-repeat="book in books" type="item-text-wrap" >
         <h3>{{book.bookname}}</h3>
         <h2>{{book.authorname}}</h2>
 		<h2>{{book.publication}}</h2>
+		
+		<a class="button button-small " href="#/tab/book/{{book.id}}">View</a>
+            <a class="button button-small " href="#" ng-click="deleteBook(book)">Delete</a>
+		
       </ion-item>
       
     </ion-list>

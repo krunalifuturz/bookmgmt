@@ -7,7 +7,7 @@ angular.module('starter.services', [])
   #bookinfo = $resource("http://180.211.97.84/ionincApp/api/Values/SelectAll")
   bookinfo = $resource("http://www.w3schools.com/angular/customers.php")
   bookinfo.get (data) ->
-    alert 'data:'+data
+    #alert 'data:'+data
     bookarray = data.records
     i = 0
     angular.forEach bookarray, ((value, key) ->

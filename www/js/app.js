@@ -56,7 +56,6 @@ angular.module('starter.services', []).factory("BookService", function($resource
   bookinfo = $resource("http://www.w3schools.com/angular/customers.php");
   bookinfo.get(function(data) {
     var bookarray, i;
-    alert('data:' + data);
     bookarray = data.records;
     i = 0;
     return angular.forEach(bookarray, (function(value, key) {
