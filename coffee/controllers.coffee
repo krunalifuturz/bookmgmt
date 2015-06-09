@@ -1,20 +1,19 @@
 angular.module('starter.controllers', [])
 # A simple controller that fetches a list of data from a service
-.controller 'BookIndexCtrl', ($scope,confirmPopup,$window, BookService) ->
-  # "Books" is a service returning mock data (services.js)
+.controller("BookIndexCtrl", ($scope, confirmPopup, $window, BookService) ->
   $scope.deleteBook = (book) ->
-  if confirmPopup.showPopup("Are you sure you want to delete this book?")
-    book.$delete ->
-      $window.location.href = ""
+    if confirmPopup.showPopup("Are you sure you want to delete this book?")
+      book.$delete ->
+        $window.location.href = ""
+
+
   $scope.books = BookService.all()
-  #return
-# A simple controller that shows a tapped item's data
-.controller 'BookDetailCtrl', ($scope, $stateParams, BookService) ->
+).controller('BookDetailCtrl', ($scope, $stateParams, BookService) ->
   # "Books" is a service returning mock data (services.js)
   $scope.book = BookService.get($stateParams.bookId)
   #return
 # A post controller for save new book data.
-.controller 'BookInsertCtrl', ($scope, BookService) ->
+).controller 'BookInsertCtrl', ($scope, BookService) ->
   $scope.bookData = {}
   #alert 'test'
   $scope.addBook = ->

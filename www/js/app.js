@@ -38,14 +38,15 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.services', 'starter.c
   return $urlRouterProvider.otherwise('/tab/books');
 });
 
-angular.module('starter.controllers', []).controller('BookIndexCtrl', function($scope, confirmPopup, $window, BookService) {
-  $scope.deleteBook = function(book) {};
-  if (confirmPopup.showPopup("Are you sure you want to delete this book?")) {
-    book.$delete(function() {
-       $window.location.href = "";
-    });
-  }
-   $scope.books = BookService.all();
+angular.module('starter.controllers', []).controller("BookIndexCtrl", function($scope, confirmPopup, $window, BookService) {
+  $scope.deleteBook = function(book) {
+    if (confirmPopup.showPopup("Are you sure you want to delete this book?")) {
+      return book.$delete(function() {
+        return $window.location.href = "";
+      });
+    }
+  };
+  return $scope.books = BookService.all();
 }).controller('BookDetailCtrl', function($scope, $stateParams, BookService) {
   return $scope.book = BookService.get($stateParams.bookId);
 }).controller('BookInsertCtrl', function($scope, BookService) {
@@ -56,15 +57,10 @@ angular.module('starter.controllers', []).controller('BookIndexCtrl', function($
   };
 });
 
-
-/*
-A simple example service that returns some data.
-Need to required call api for fetching the book data. For temp basis I have create static data.
- */
 angular.module("starter.services", ["ngResource"]).factory("BookService", function($resource) {
   var bookinfo, books;
   books = [];
-  bookinfo = $resource("http://www.w3schools.com/angular/customers.php");
+  bookinfo = $resource("http://180.211.97.84/ionincApp/api/Values/SelectAll");
   bookinfo.get(function(data) {
     var bookarray, i;
     alert(data);
@@ -74,9 +70,9 @@ angular.module("starter.services", ["ngResource"]).factory("BookService", functi
       var book;
       book = [];
       book.id = key;
-      book.bookname = value.Name;
-      book.authorname = value.City;
-      book.publication = value.Country;
+      book.bookname = value.bookname;
+      book.authorname = value.authorname;
+      book.publication = value.publication;
       return this.push(book);
     }), books);
   });
@@ -96,5 +92,9 @@ angular.module("starter.services", ["ngResource"]).factory("BookService", functi
       book = [];
       return books;
     }
+  };
+}).service("confirmPopup", function($window) {
+  return this.showPopup = function(message) {
+    return $window.confirm(message);
   };
 });
