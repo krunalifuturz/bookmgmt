@@ -1,7 +1,11 @@
 angular.module('starter.controllers', [])
 # A simple controller that fetches a list of data from a service
-.controller 'BookIndexCtrl', ($scope, BookService) ->
+.controller 'BookIndexCtrl', ($scope,confirmPopup,$window, BookService) ->
   # "Books" is a service returning mock data (services.js)
+  $scope.deleteBook = (book) ->
+  if confirmPopup.showPopup("Are you sure you want to delete this book?")
+    book.$delete ->
+      $window.location.href = ""
   $scope.books = BookService.all()
   #return
 # A simple controller that shows a tapped item's data

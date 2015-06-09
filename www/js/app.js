@@ -38,8 +38,14 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.services', 'starter.c
   return $urlRouterProvider.otherwise('/tab/books');
 });
 
-angular.module('starter.controllers', []).controller('BookIndexCtrl', function($scope, BookService) {
-  return $scope.books = BookService.all();
+angular.module('starter.controllers', []).controller('BookIndexCtrl', function($scope, confirmPopup, $window, BookService) {
+  $scope.deleteBook = function(book) {};
+  if (confirmPopup.showPopup("Are you sure you want to delete this book?")) {
+    book.$delete(function() {
+       $window.location.href = "";
+    });
+  }
+   $scope.books = BookService.all();
 }).controller('BookDetailCtrl', function($scope, $stateParams, BookService) {
   return $scope.book = BookService.get($stateParams.bookId);
 }).controller('BookInsertCtrl', function($scope, BookService) {
@@ -50,12 +56,18 @@ angular.module('starter.controllers', []).controller('BookIndexCtrl', function($
   };
 });
 
-angular.module('starter.services', []).factory("BookService", function($resource) {
+
+/*
+A simple example service that returns some data.
+Need to required call api for fetching the book data. For temp basis I have create static data.
+ */
+angular.module("starter.services", ["ngResource"]).factory("BookService", function($resource) {
   var bookinfo, books;
   books = [];
   bookinfo = $resource("http://www.w3schools.com/angular/customers.php");
   bookinfo.get(function(data) {
     var bookarray, i;
+    alert(data);
     bookarray = data.records;
     i = 0;
     return angular.forEach(bookarray, (function(value, key) {
@@ -75,8 +87,12 @@ angular.module('starter.services', []).factory("BookService", function($resource
     get: function(bookId) {
       return books[bookId];
     },
-    post: function(objbook) {
+    deletebook: function(bookId) {
+      return books[bookId];
+    },
+    save: function(objbook) {
       var book;
+      alert("testing service");
       book = [];
       return books;
     }
