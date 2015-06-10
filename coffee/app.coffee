@@ -20,15 +20,19 @@ angular.module('starter', [
   $stateProvider.state('tab',
     url: '/tab'
     abstract: true
-    templateUrl: 'templates/tabs.html').state('tab.book-index',
+    templateUrl: 'templates/tabs.html').state('tab.bookindex',
     url: '/books'
     views: 'books-tab':
       templateUrl: 'templates/bookindex.html'
-      controller: 'BookIndexCtrl').state('tab.book-detail',
-    url: '/book/:bookId'
+      controller: 'BookIndexCtrl').state('tab.bookdetail',
+    url: '/book/:id'
     views: 'books-tab':
       templateUrl: 'templates/bookdetail.html'
-      controller: 'BookDetailCtrl').state('tab.newbook',
+      controller: 'BookDetailCtrl').state('tab.editbook',
+    url: '/edit/:id'
+    views: 'books-tab':
+      templateUrl: 'templates/bookedit.html'
+      controller: 'BookEditCtrl').state('tab.newbook',
     url: '/newbook'
     views: 'newbook-tab':
       templateUrl: 'templates/newbook.html'
