@@ -1,0 +1,25 @@
+<!--
+  This template loads for the 'tab.editbook' state (app.js)
+-->
+<ion-view title="Add New Book">
+  <ion-content has-tabs="true">
+  <form ng-submit="updateBook()" novalidate>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <span class="input-label">Book name</span>
+        <input type="text" ng-model='bookData.bookname' name="bookname">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Author Name</span>
+        <input type="text" ng-model='bookData.authorname' name="authorname">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Publication</span>
+        <input type="text" ng-model='bookData.publication' name="publication">
+      </label>
+      
+      <button class="button button-positive button-block" type='submit'>Update</button>
+    </div>
+	</form
+  </ion-content>
+</ion-view>

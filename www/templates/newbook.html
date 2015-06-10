@@ -3,23 +3,35 @@
 -->
 <ion-view title="Add New Book">
   <ion-content has-tabs="true">
-  <form ng-submit="addBook()">
+ <form name="bookForm" ng-submit="addBook()" novalidate>
     <div class="list list-inset">
       <label class="item item-input">
         <span class="input-label">Book name</span>
-        <input type="text" ng-model='bookData.bookname' name="bookname" required>
+        <input type="text" ng-model='bookData.bookname' name="bookname" required placeholder="Book Name">
+		 <span style="color:red" ng-show="bookForm.bookname.$invalid">
+		 <span ng-show="bookForm.bookname.$error.required">Book name is required.</span>
+		 </span>
       </label>
       <label class="item item-input">
         <span class="input-label">Author Name</span>
-        <input type="text" ng-model='bookData.authorname' name="authorname" required>
-      </label>
+        <input type="text" ng-model='bookData.authorname' name="authorname" required placeholder="Author Name">
+      <span style="color:red" ng-show="bookForm.bookname.$invalid">
+		 <span ng-show="bookForm.authorname.$error.required">Author name is required.</span>
+		 </span>
+	  </label>
       <label class="item item-input">
         <span class="input-label">Publication</span>
-        <input type="text" ng-model='bookData.publication' name="publication" required>
+        <input type="text" ng-model='bookData.publication' name="publication" required placeholder="Publication">
+		<span style="color:red" ng-show="bookForm.bookname.$invalid">
+		 <span ng-show="bookForm.publication.$error.required">Publication is required.</span>
+		 </span>
       </label>
       
-      <button class="button button-positive button-block" type='submit'>Save</button>
+      <button class="button button-positive button-block" type="submit" 
+	  ng-disabled="bookForm.bookname.$invalid ||
+					bookForm.authorname.$invalid ||
+					bookForm.publication.$invalid" >Save</button>
     </div>
-	</form
+	</form>
   </ion-content>
 </ion-view>
