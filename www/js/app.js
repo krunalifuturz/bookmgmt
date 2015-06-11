@@ -68,11 +68,14 @@ angular.module('starter.controllers', []).controller("BookIndexCtrl", function($
 });
 
 angular.module("starter.services", ["ngResource"]).factory("BookService", function($resource) {
-  return $resource("http://192.168.1.176/ionic/api/bookmgmt/:id", {
+  return $resource("http://180.211.97.84/ionincApp/api/bookmgmt/:id", {
     id: "@id"
   }, {
     update: {
       method: "PUT"
+    },
+    remove: {
+      method: "DELETE"
     }
   });
 }).service("confirmPopup", function($window) {
