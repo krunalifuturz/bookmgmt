@@ -7,6 +7,17 @@ angular.module('starter.controllers', [])
    book.$delete ->
      alert "successfully delete";
 
+).controller("BookEditCtrl", ($scope, $stateParams, BookService) ->
+  alert "in edit"
+  $scope.updateBook = ->
+    $scope.book.$update ->
+      $state.go "tab.book-index"
+
+  $scope.getBook = ->
+    $scope.book = BookService.get(id: $stateParams.id)
+
+  $scope.getBook()
+
 ).controller('BookDetailCtrl', ($scope, $stateParams, BookService) ->
   # "Books" is a service returning mock data (services.js)
   $scope.book = BookService.query({id:$stateParams.id})

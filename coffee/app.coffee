@@ -9,6 +9,7 @@
 angular.module('starter', [
   'ionic'
   'ngResource'
+  #'ngMaterial'
   'starter.services'
   'starter.controllers'
 ])

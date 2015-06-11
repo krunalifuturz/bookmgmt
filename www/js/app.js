@@ -54,6 +54,19 @@ angular.module('starter.controllers', []).controller("BookIndexCtrl", function($
       return alert("successfully delete");
     });
   };
+}).controller("BookEditCtrl", function($scope, $stateParams, BookService) {
+  alert("in edit");
+  $scope.updateBook = function() {
+    return $scope.book.$update(function() {
+      return $state.go("tab.book-index");
+    });
+  };
+  $scope.getBook = function() {
+    return $scope.book = BookService.get({
+      id: $stateParams.id
+    });
+  };
+  return $scope.getBook();
 }).controller('BookDetailCtrl', function($scope, $stateParams, BookService) {
   return $scope.book = BookService.query({
     id: $stateParams.id
