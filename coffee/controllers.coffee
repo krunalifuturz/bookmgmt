@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
 
 ).controller('BookDetailCtrl', ($scope, $stateParams, BookService) ->
   # "Books" is a service returning mock data (services.js)
-  $scope.book = BookService.get({id:$stateParams.id})
+  $scope.book = BookService.query({id:$stateParams.id})
   #return
 # A post controller for save new book data.
 ).controller 'BookInsertCtrl', ($scope,$state,$stateParams,$window, BookService) ->

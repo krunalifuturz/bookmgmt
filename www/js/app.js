@@ -55,7 +55,7 @@ angular.module('starter.controllers', []).controller("BookIndexCtrl", function($
     });
   };
 }).controller('BookDetailCtrl', function($scope, $stateParams, BookService) {
-  return $scope.book = BookService.get({
+  return $scope.book = BookService.query({
     id: $stateParams.id
   });
 }).controller('BookInsertCtrl', function($scope, $state, $stateParams, $window, BookService) {
