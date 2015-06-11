@@ -46,14 +46,13 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.services', 'starter.c
   return $urlRouterProvider.otherwise('/tab/books');
 });
 
-angular.module('starter.controllers', []).controller("BookIndexCtrl", function($scope, confirmPopup, $window, BookService) {
+angular.module('starter.controllers', []).controller("BookIndexCtrl", function($scope, confirmPopup, BookService) {
   $scope.books = BookService.query();
   return $scope.deleteBook = function(book) {
-    if (confirmPopup.showPopup("Are you sure you want to delete this book?")) {
-      return book.$delete(function() {
-        return $window.location.href = "";
-      });
-    }
+    alert('In delete');
+    return book.$delete(function() {
+      return alert("successfully delete");
+    });
   };
 }).controller('BookDetailCtrl', function($scope, $stateParams, BookService) {
   return $scope.book = BookService.get({
@@ -61,14 +60,15 @@ angular.module('starter.controllers', []).controller("BookIndexCtrl", function($
   });
 }).controller('BookInsertCtrl', function($scope, $state, $stateParams, $window, BookService) {
   $scope.bookData = new BookService();
-  $scope.addBook = function() {};
-  return $scope.bookData.$save(function() {
-    return $window.location.href = "";
-  });
+  return $scope.addBook = function() {
+    return $scope.bookData.$save(function() {
+      return $window.location.href = "";
+    });
+  };
 });
 
 angular.module("starter.services", ["ngResource"]).factory("BookService", function($resource) {
-  return $resource("http://180.211.97.84/ionincApp/api/bookmgmt/:id", {
+  return $resource("http://192.168.1.176/ionic/api/bookmgmt/:id", {
     id: "@id"
   }, {
     update: {
