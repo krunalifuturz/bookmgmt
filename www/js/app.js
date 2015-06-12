@@ -67,10 +67,27 @@ angular.module('starter.controllers', [])
 }).controller("BookIndexCtrl", function($scope, confirmPopup, BookService) {
   $scope.books = BookService.query();
   return $scope.deleteBook = function(book) {
-    alert('In delete');
-    return book.$delete(function() {
+    
+	// var confirm = $mdDialog.confirm()
+      // .parent(angular.element(document.body))
+      // .title('Are you sure you want to delete?')
+      // .content('Current selected book going for del')
+      // .ariaLabel('Lucky day')
+      // .ok('Ok')
+      // .cancel('Cancel')
+      // .targetEvent(book);
+    // $mdDialog.show(confirm).then(function() {
+        
+    // }, function() {
+      // $scope.alert = 'You decided to dont delete';
+    // });
+	
+
+	  return book.$delete(function() {
       return alert("successfully delete");
     });
+	
+	
   };
 }).controller("BookEditCtrl", function($scope, $stateParams, BookService) {
   alert("in edit");

@@ -30,24 +30,115 @@
   <!-- 
     'starter' is the name of this angular module (js/app.js)
   -->
-  <body ng-app="starter" animation="slide-left-right-ios7">
+  <body ng-app="starter">
 
-    <!-- 
-      The nav bar that will be updated as we navigate between views
-      Additional attributes set its look, ion-nav-bar animation and icons
-      Icons provided by Ionicons: http://ionicons.com/ 
-    -->
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button class="button-icon button-clear ion-ios7-arrow-back">
-      </ion-nav-back-button>
-    </ion-nav-bar>
 
-    <!-- 
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
-    <ion-nav-view></ion-nav-view>
+<div ng-controller="AppCtrl">
+  <md-content class="md-padding">
+    <md-tabs class="md-accent" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+      <md-tab id="tab1">
+        <md-tab-label>New Book</md-tab-label>
+        <md-tab-body>
+            <md-content layout-padding>
+ <form name="bookForm" ng-submit="addBook()" novalidate>
+    
+	<md-input-container>
+      
+        <label>Book name</label>
+        <input type="text" ng-model='bookData.bookname' name="bookname" required placeholder="Book Name">
+		 
+		 <div ng-messages="bookForm.bookname.$error">
+          <div ng-message="required">Book is required.</div>
+          </div>
+	  </md-input-container>
+	  
+      <md-input-container>
+     <label>Author</label>
+      
+        <input type="text" ng-model='bookData.authorname' name="authorname" required placeholder="Author Name">
+	 <div ng-messages="bookForm.authorname.$error">
+          <div ng-message="required">authorname is required.</div>
+        </div> 
+	 
+	 </md-input-container>
+	 
+      <md-input-container>
+      <label>Publication</label>
+       
+        <input type="text" ng-model='bookData.publication' name="publication" required placeholder="Publication">
+		<div ng-messages="bookForm.publication.$error">
+          <div ng-message="required">publication is required.</div>
+        </div>
+     </md-input-container>
+	 
+      <md-button class="button button-positive button-block" type="submit" 
+	  ng-disabled="bookForm.bookname.$invalid ||
+					bookForm.authorname.$invalid ||
+					bookForm.publication.$invalid" >Save</md-button>
+					
+   
+	</form>
+            </md-content>
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab2" ng-disabled="data.secondLocked">
+        <md-tab-label>Book List</md-tab-label>
+        <md-tab-body>
+          <div title="Book Info" ng-controller="BookIndexCtrl">
+  <md-content>
+
+    <md-list>
+
+      <md-list-item ng-repeat="book in books" type="item-text-wrap" class="md-3-line">
+	  <div class="md-list-item-text">
+        <h3>{{book.bookname}}</h3>
+        <h3>{{book.authorname}}</h3>
+		<h3>{{book.publication}}</h3>
+		<h3>BookId : {{book.id}}</h3>
+		  <a class="button button-small " ui-sref="tab.bookdetail({id:book.id})">Edit</a>
+            <a class="button button-small " href="#" ng-click="deleteBook(book)">Delete</a>
+			</div>
+      </md-list-item>
+      
+    </md-list>
+
+  </md-content>
+</div>
+		  
+		  
+		  
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab3">
+        <md-tab-label>About</md-tab-label>
+        <md-tab-body>
+          
+		  <div ng-view title="About Ionic">
+		  <md-content padding="true">
+			<img src="img/ionic.png" class="ionic-logo">
+			<p>
+			  This is a sample book info project using this Ionic Framework.
+			</p>
+			<p>
+			  Questions? Hit up the 
+			  <a href="http://forum.ionicframework.com/" target="_blank">forum</a>.
+			</p>
+			<p>
+			  Stay up-to-date with the Ionic 
+			  <a href="http://ionicframework.com/subscribe/" target="_blank">newsletter</a> and 
+			  <a href="https://twitter.com/Ionicframework" target="_blank">twitter</a> account.
+			</p>
+		   
+		  </md-content>
+	</div>
+		  
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+
+</div>
+
 
   </body>
 </html>
