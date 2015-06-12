@@ -3,27 +3,34 @@
   Each tab's child <ion-nav-view> directive will have its own 
   navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-default">
 
 
+<div ng-controller="AppCtrl">
+  <md-content class="md-padding">
+    <md-tabs class="md-accent" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+      <md-tab id="tab1">
+        <md-tab-label>New Book</md-tab-label>
+        <md-tab-body>
+          View for Item #1 <br/>
+          data.selectedIndex = 0;
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab2" ng-disabled="data.secondLocked">
+        <md-tab-label>Book List</md-tab-label>
+        <md-tab-body>
+          View for Item #2 <br/>
+          data.selectedIndex = 1;
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab3">
+        <md-tab-label>About</md-tab-label>
+        <md-tab-body>
+          View for Item #3 <br/>
+          data.selectedIndex = 2;
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 
-  <!-- New book Tab -->
-  <ion-tab title="New book" icon="icon ion-heart" href="#/tab/newbook">
-    <ion-nav-view name="newbook-tab"></ion-nav-view>
-  </ion-tab>
+</div>
 
-
-  <!-- Book list Tab -->
-  <ion-tab title="Books" icon="icon ion-home" href="#/tab/books">
-    <ion-nav-view name="books-tab"></ion-nav-view>
-  </ion-tab>
-
-  
-  
-  <!-- About Tab -->
-  <ion-tab title="About" icon="icon ion-search" href="#/tab/about">
-    <ion-nav-view name="about-tab"></ion-nav-view>
-  </ion-tab>
-
-
-</ion-tabs>

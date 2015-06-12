@@ -1,5 +1,4 @@
-angular.module('starter', ['ionic', 'ngAria', 'ngMaterial', 'ngResource', 'starter.services', 'starter.controllers'])
-.config([
+angular.module('starter', ['ionic', 'ngAria', 'ngMaterial', 'ngResource', 'starter.services', 'starter.controllers']).config([
   "$mdThemingProvider", function($mdThemingProvider) {
     return $mdThemingProvider.theme('default').primaryPalette('deep-purple').accentPalette('orange');
   }
@@ -51,7 +50,21 @@ angular.module('starter', ['ionic', 'ngAria', 'ngMaterial', 'ngResource', 'start
   return $urlRouterProvider.otherwise('/tab/books');
 });
 
-angular.module('starter.controllers', []).controller("BookIndexCtrl", function($scope, confirmPopup, BookService) {
+angular.module('starter.controllers', [])
+.controller("AppCtrl", function($scope) {
+  $scope.data = {
+    selectedIndex: 0,
+    secondLocked: false,
+    secondLabel: "Item Two",
+    bottom: true
+  };
+  $scope.next = function() {
+    return $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2);
+  };
+  return $scope.previous = function() {
+    return $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
+  };
+}).controller("BookIndexCtrl", function($scope, confirmPopup, BookService) {
   $scope.books = BookService.query();
   return $scope.deleteBook = function(book) {
     alert('In delete');
