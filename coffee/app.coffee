@@ -8,13 +8,18 @@
 
 angular.module('starter', [
   'ionic'
+  'ngAria'
+  'ngMaterial'
   'ngResource'
-  #'ngMaterial'
   'starter.services'
   'starter.controllers'
 ])
 
-
+.config(["$mdThemingProvider", ($mdThemingProvider) ->
+  $mdThemingProvider.theme('default')
+    .primaryPalette('deep-purple')
+    .accentPalette('orange')
+])
 
 .config ($stateProvider, $urlRouterProvider) ->
   # Ionic uses AngularUI Router which uses the concept of states

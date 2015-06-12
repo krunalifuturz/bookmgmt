@@ -1,4 +1,9 @@
-angular.module('starter', ['ionic', 'ngResource', 'starter.services', 'starter.controllers']).config(function($stateProvider, $urlRouterProvider) {
+angular.module('starter', ['ionic', 'ngAria', 'ngMaterial', 'ngResource', 'starter.services', 'starter.controllers'])
+.config([
+  "$mdThemingProvider", function($mdThemingProvider) {
+    return $mdThemingProvider.theme('default').primaryPalette('deep-purple').accentPalette('orange');
+  }
+]).config(function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('tab', {
     url: '/tab',
     abstract: true,
